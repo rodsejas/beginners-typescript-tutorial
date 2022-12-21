@@ -1,4 +1,5 @@
 import { expect, it } from "vitest";
+import { string } from "zod";
 
 interface User {
   id: string;
@@ -7,8 +8,8 @@ interface User {
 }
 
 const createThenGetUser = async (
-  createUser: unknown,
-  getUser: unknown,
+  createUser: () => Promise<string>,
+  getUser: (userId: string) => Promise<User>,
 ): Promise<User> => {
   const userId: string = await createUser();
 
